@@ -4,6 +4,7 @@ import Task from '../Task/index';
 
 // App component - represents the whole app
 class App extends Component {
+
     constructor(props) {
         super(props);
         this.state = {
@@ -49,8 +50,19 @@ class App extends Component {
     }
 
     render() {
-        console.log(this.state.admin);
-        console.log(this.state.admins);
+
+        const { error } = this.state;
+
+        const SignInForm = compose(
+            withRouter,
+            withFirebase,
+        )(SignInFormBase);
+
+        const SignInGoogle = compose(
+            withRouter,
+            withFirebase,
+        )(SignInGoogleBase);
+
         //console.log(this.props.currentUser.services.google.email);
         return (
             <div className="container">
@@ -101,8 +113,11 @@ class App extends Component {
                         </div>
                         :'' }
                     <h1>Todo List</h1>
-                    <h1>popo</h1>
-                </header>
+                    <form onSubmit={this.onSubmit}>
+                        <button type="submit">Sign In with Google</button>
+
+                        {error && <p>{error.message}</p>}
+                    </form>                </header>
 
                 <ul>
                     <h1>jo</h1>
@@ -125,6 +140,7 @@ class App extends Component {
         );
     }
 }
+
 
 
 export default App;

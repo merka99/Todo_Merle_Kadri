@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Task from '../Task/index';
 
+
 // App component - represents the whole app
 class App extends Component {
 
@@ -52,6 +53,15 @@ class App extends Component {
     render() {
 
         const { error } = this.state;
+        const SignInPage = () => (
+            <div>
+                <h1>SignIn</h1>
+                <SignInForm />
+                <SignInGoogle />
+                <PasswordForgetLink />
+                <SignUpLink />
+            </div>
+        );
 
         const SignInForm = compose(
             withRouter,
